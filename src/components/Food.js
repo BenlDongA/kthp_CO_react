@@ -1,7 +1,9 @@
 // Food.jsx
 import React, { useState, useEffect } from 'react';
+import { useCart } from '../components/CartContext';
 
 const Food = () => {
+  const { addToCart } = useCart();
   const [foods, setFoods] = useState([]);
   const [originalFoods, setOriginalFoods] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -125,11 +127,12 @@ const Food = () => {
               />
               <div className='flex justify-between px-2 py-4'>
                 <p className='font-bold'>{item.name}</p>
-                <button>Add to cart +</button>
+                <button onClick={() => addToCart(item)}>Add to cart +</button>
+          
                 <p>
                
                   <span className='bg-orange-500 text-white p-1 rounded-full'>
-                    {item.price}
+                    {item.price}$
                   </span>
                 </p>
               </div>

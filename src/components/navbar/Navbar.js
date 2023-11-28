@@ -10,8 +10,9 @@ const Navbar = () => {
 const [nav, setNav] = useState(false)
 
   return (
+
     <div className='container'>
-      {/* Left side */}
+
       <div className='flex items-center'>
         <div onClick={()=> setNav(!nav)} className=''>
           <AiOutlineMenu size={30} />
@@ -64,6 +65,7 @@ const [nav, setNav] = useState(false)
 </div>
 
     </div>
+  
   );
 };
 
