@@ -1,5 +1,6 @@
 // Food.jsx
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Food = () => {
   const [foods, setFoods] = useState([]);
@@ -7,6 +8,8 @@ const Food = () => {
   const [loading, setLoading] = useState(true);
   const [selectedType, setSelectedType] = useState('All');
   const [selectedPrice, setSelectedPrice] = useState('All');
+  const [cart, setCart] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,6 +50,10 @@ const Food = () => {
     setSelectedPrice(price);
   };
 
+  const addToCart = (item) => {
+    setCart([...cart, item]);
+  };
+
   return (
     <div className='max-w-[1640px] m-auto px-4 py-12'>
       <h1 className='text-orange-600 font-bold text-4xl text-center'>
@@ -64,30 +71,6 @@ const Food = () => {
               }`}
             >
               All
-            </button>
-            <button
-              onClick={() => filterType('BBQ')}
-              className={`m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white ${
-                selectedType === 'BBQ' ? 'bg-orange-600 text-white' : ''
-              }`}
-            >
-              BBQ
-            </button>
-            <button
-              onClick={() => filterType('hai san')}
-              className={`m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white ${
-                selectedType === 'hai san' ? 'bg-orange-600 text-white' : ''
-              }`}
-            >
-              Hải Sản
-            </button>
-            <button
-              onClick={() => filterType('lau')}
-              className={`m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white ${
-                selectedType === 'lau' ? 'bg-orange-600 text-white' : ''
-              }`}
-            >
-              Lẫu
             </button>
             {/* Add more buttons for other types as needed */}
           </div>
@@ -125,9 +108,8 @@ const Food = () => {
               />
               <div className='flex justify-between px-2 py-4'>
                 <p className='font-bold'>{item.name}</p>
-                <button>Add to cart +</button>
+                <button onClick={() => addToCart(item)}>Add to cart +</button>
                 <p>
-               
                   <span className='bg-orange-500 text-white p-1 rounded-full'>
                     {item.price}
                   </span>

@@ -4,6 +4,7 @@ import { BsFillCartFill, BsFillSaveFill } from 'react-icons/bs';
 import { FaUserFriends, FaWallet } from 'react-icons/fa';
 import { MdFavorite, MdHelp } from 'react-icons/md';
 import { TbTruckDelivery } from 'react-icons/tb';
+import { Link } from'react-router-dom';
 import './navbar.css'
 const Navbar = () => {
 const [nav, setNav] = useState(false)
@@ -32,8 +33,9 @@ const [nav, setNav] = useState(false)
       </div>
       {/* Cart button */}
       <button>
-  < BsFillCartFill size={20} className='button-cart' /> Cart
-    </button>
+  <BsFillCartFill size={20} className="button-cart" />
+  <Link to="/cart">Cart</Link> 
+</button>
       <div className={`nav-container ${nav ? '' : 'hidden'}`}>
   <AiOutlineClose
     onClick={() => setNav(!nav)}
