@@ -5,7 +5,8 @@ const Food = () => {
   const [foods, setFoods] = useState([]);
   const [originalFoods, setOriginalFoods] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedType, setSelectedType] = useState('All'); // New state for selected type
+  const [selectedType, setSelectedType] = useState('All');
+  const [selectedPrice, setSelectedPrice] = useState('All');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,11 +33,18 @@ const Food = () => {
       setFoods(filteredData);
     }
 
-    setSelectedType(category); // Set the selected type
+    setSelectedType(category);
   };
 
   const filterPrice = (price) => {
-    // Implement your filter logic here if needed
+    if (price === 'All') {
+      setFoods(originalFoods);
+    } else {
+      const filteredData = originalFoods.filter((item) => item.price === price);
+      setFoods(filteredData);
+    }
+
+    setSelectedPrice(price);
   };
 
   return (
@@ -48,7 +56,7 @@ const Food = () => {
       <div className='flex flex-col lg:flex-row justify-between'>
         <div>
           <p className='font-bold text-gray-700'>Filter Type</p>
-          <div className='flex justfiy-between flex-wrap'>
+          <div className='flex justify-between flex-wrap'>
             <button
               onClick={() => filterType('All')}
               className={`m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white ${
@@ -60,15 +68,15 @@ const Food = () => {
             <button
               onClick={() => filterType('BBQ')}
               className={`m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white ${
-                selectedType === 'nuong' ? 'bg-orange-600 text-white' : ''
+                selectedType === 'BBQ' ? 'bg-orange-600 text-white' : ''
               }`}
             >
-             BBQ
+              BBQ
             </button>
             <button
               onClick={() => filterType('hai san')}
               className={`m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white ${
-                selectedType === 'chien' ? 'bg-orange-600 text-white' : ''
+                selectedType === 'hai san' ? 'bg-orange-600 text-white' : ''
               }`}
             >
               Hải Sản
@@ -76,7 +84,7 @@ const Food = () => {
             <button
               onClick={() => filterType('lau')}
               className={`m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white ${
-                selectedType === 'nuoc' ? 'bg-orange-600 text-white' : ''
+                selectedType === 'lau' ? 'bg-orange-600 text-white' : ''
               }`}
             >
               Lẫu
@@ -89,14 +97,14 @@ const Food = () => {
           <p className='font-bold text-gray-700'>Filter Price</p>
           <div className='flex justify-between max-w-[390px] w-full'>
             <button
-              onClick={() => setFoods(originalFoods)} // Clear the filter (replace with logic to fetch all data)
+              onClick={() => filterPrice('All')}
               className={`m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white ${
-                selectedType === 'All' ? 'bg-orange-600 text-white' : ''
+                selectedPrice === 'All' ? 'bg-orange-600 text-white' : ''
               }`}
             >
               All
             </button>
-            {/* ... (other buttons for different prices) ... */}
+            {/* Add more buttons for other prices as needed */}
           </div>
         </div>
       </div>
@@ -117,7 +125,9 @@ const Food = () => {
               />
               <div className='flex justify-between px-2 py-4'>
                 <p className='font-bold'>{item.name}</p>
+                <button>Add to cart +</button>
                 <p>
+               
                   <span className='bg-orange-500 text-white p-1 rounded-full'>
                     {item.price}
                   </span>

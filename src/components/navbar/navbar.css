@@ -7,6 +7,9 @@
   align-items: center;
   padding: 4px;
   cursor: pointer;
+  position: fixed;
+  z-index: 99999;
+  background-color: rgb(212, 212, 212);
    
 }
 .lo{
