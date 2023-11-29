@@ -91,6 +91,14 @@ const Food = () => {
             >
               Lẫu
             </button>
+            <button
+              onClick={() => filterType('nuoc')}
+              className={`m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white ${
+                selectedType === 'nuoc' ? 'bg-orange-600 text-white' : ''
+              }`}
+            >
+              Đồ Uống
+            </button>
             {/* Add more buttons for other types as needed */}
           </div>
         </div>

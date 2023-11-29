@@ -33,10 +33,12 @@ const [nav, setNav] = useState(false)
         />
       </div>
       {/* Cart button */}
-      <button>
-  <BsFillCartFill size={20} className="button-cart" />
-  <Link to="/cart">Cart</Link> 
-</button>
+      <Link to="/cart">
+        <button>
+      <BsFillCartFill size={20} className="button-cart" />
+        Cart
+      </button>
+    </Link> 
       <div className={`nav-container ${nav ? '' : 'hidden'}`}>
   <AiOutlineClose
     onClick={() => setNav(!nav)}
@@ -44,7 +46,7 @@ const [nav, setNav] = useState(false)
     className='close-button'
   />
   <h2 className='title'>
-    Best <span className='font-bold'>Eats</span>
+   DBCO <span className='font-bold'>Restaurant</span>
   </h2>
   <nav>
     <ul className='nav-list'>
